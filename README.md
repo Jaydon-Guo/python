@@ -1,3 +1,4 @@
+## 模拟数字水印的嵌入和提取过程
     import numpy as np
     import cv2
     #读取原始载体图像
@@ -80,4 +81,5 @@
     cv2.waitKey()
     cv2.destroyAllWindows()
     
+## 
     
