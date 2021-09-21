@@ -182,4 +182,29 @@
     cv2.imshow('green',green)
     #==========指定红色值的范围===========
     minRed=np.array([0,50,50])
+    maxRed=np.array([30,255,255])
+    #确定红色区域
+    mask=cv2.inRange(hsv,minRed,maxRed)
+    #通过掩码控制的按位与运算，锁定红色区域
+    red=cv2.bitwise_and(opencv,opencv,mask=mask)
+    cv2.imshow('red',red)
+    cv2.waitKey()
+    cv2.destroyAllWindows()
     
+## 标记肤色
+    import cv2
+    img=cv2.imread("lesson2.jpg")
+    hsv=cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+    h,s,v=cv2.split(hsv)
+    minHue=5
+    maxHue=170
+    hueMask=cv2.inRange(h,minHue,maxHue)
+    minSat=25
+    maxSat=166
+    satMask=cv2.inRange(s,minSat,maxSat)
+    mask=hueMask & satMask
+    roi=cv2.bitwise_and(img,img,mask=mask)
+    cv2.imshow("img",img)
+    cv2.imshow("ROI",roi)
+    cv2.waitKey()
+    cv2.destroyAllWindows()
