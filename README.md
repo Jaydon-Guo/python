@@ -81,5 +81,47 @@
     cv2.waitKey()
     cv2.destroyAllWindows()
     
-## 
+## 将BGR图像转换为灰度图像
+    import cv2
+    import numpy as np
+    img=np.random.randint(0,256,size=[2,4,3],dtype=np.uint8)
+    rst=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+    print("img=\n",img)
+    print("rst=\n",rst)
+    print("像素点(1,0)直接计算得到的值=",img[1,,0]*0.114+img[1,0,1]*0.587+img[1,0,2]*0.299)
+    print("像素点(1,0)使用公式cv2.cvtColor()转换值=",rst[1,0])
+    
+## 将灰度图像转换为BGR图像
+    import cv2
+    import numpy as np
+    img=np.random.randint(0,256,size=[2,4],dtype=np.uint8)
+    rst=cv2.cvtColor(img,cv2.COLOR_GRAY2BGR)
+    print("img=\n",img)
+    print("rst=\n",rst)
+    
+## 将图像在BGR和RGB模式之间相互转换
+    import cv2
+    import numpy as np
+    img=np.random.randint(0,256,size=[2,4,3],dtype=np.uint8)
+    rgb=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+    bgr=cv2.cvtColor(rgb,cv2.COLOR_RGB2BGR)
+    print("img=\n",img)
+    print("rgb=\n",rgb)
+    print("bgr=\n",bgr)
+    
+## 将图像在BGR模式和灰度模式之间相互转换
+    import cv2
+    lena=cv2.imread("lenacolor.png")
+    gray=cv2.cvtColor(lena,cv2.COLOR_BGR2GRAY)
+    rgb=cv2.cvtColor(gray,cv2.COLOR_GRAY2BGR)
+    #==========打印shape============
+    print("lena.shape=",lena.shape)
+    print("gray.shape=",gray.shape)
+    print("rgb.shape=",rgb.shape)
+    #=========显示效果==============
+    cv2.imshow("lena",lena)
+    cv2.imshow("gray",gray)
+    cv2.imshow("rgb",rgb)
+    cv2.waitKey()
+    cv2.destroyAllWindows()
     
