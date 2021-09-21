@@ -125,3 +125,61 @@
     cv2.waitKey()
     cv2.destroyAllWindows()
     
+## 将图像从BGR模式转换为RGB模式
+    import cv2
+    lena=cv2.imread("lenacolor.png")
+    rgb=cv2.cvtColor(lena,cv2.COLOR_BGR2RGB)
+    cv2.imshow("lena",lena)
+    cv2.imshow("rgb",rgb)
+    cv2.waitKey()
+    cv2.destroyAllWindows()
+    
+## HSV色彩空间讨论
+    import cv2
+    import numpy as np
+    #==========测试一些OpenCV中蓝色的HSV模式值==========
+    imgBlue=np.zeros([1,1,3],dtype=np.uint8)
+    imgBlue[0,0,0]=255
+    Blue=imgBlue
+    BlueHSV=cv2.cvtColor(Blue,cv2.COLOR_BGR2HSV)
+    print("Blue=\n",Blue)
+    print("BlueHSV=\n",BlueHSV)
+    #==========测试一下OpenCV中绿色的HSV模式值==========
+    imgGreen=np.zeros([1,1,3],dtype=np.uint8)
+    imgGreen[0,0,1]=255
+    GreenHSV=cv2.cvtColor(Green,cv2.COLOR_BGR2HSV)
+    print("Green=\n",Green)
+    print("GreenHSV=\n",GreenHSV)
+    #=========测试一下OpenCV中红色的HSV模式值===========
+    imgRed=np.zeros([1,1,3],dtype=np.uint8)
+    imgRed[0,0,2]=255
+    Red=imgRed
+    RedHSV=cv2.cvtColor(Red,cv2.COLOR_BGR2HSV)
+    print("Red=\n",Red)
+    print("RedHSV=\n",RedHSV)
+    
+## 显示特定颜色值
+    import cv2
+    import numpy as np
+    opencv=cv2.imread("opencv.jpg")
+    hsv=cv2.cvtColor(opencv,cv2.COLOR_BGR2HSV)
+    cv2.imshow('opencv',opencv)
+    #============指定蓝色值的范围============
+    minBlue=np.array([110,50,50])
+    maxBlue=np.array([130,255,255])
+    #确定蓝色区域
+    mask=cv2.inRange(hsv,minBlue,maxBlue)
+    #通过掩码控制的按位与运算，锁定蓝色区域
+    blue=cv2.bitwise_and(opencv,opencv,mask=mask)
+    cv.imshow('blue',blue)
+    #==========指定绿色值的范围===========
+    minGreen=np.array([50,50,50])
+    maxGreen=np.array([70,255,255])
+    #确定绿色区域
+    mask=cv2.inRange(hsv,minGreen,maxGreen)
+    #通过掩码控制的按位与运算，锁定绿色区域
+    green=cv2.bitwise_and(opencv,opencv,mask=mask)
+    cv2.imshow('green',green)
+    #==========指定红色值的范围===========
+    minRed=np.array([0,50,50])
+    
